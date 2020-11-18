@@ -10,5 +10,27 @@ function display(){
         checkbox.className = "checkbox"; 
         document.body.appendChild(checkbox);                             
     }
+
+    var btn = document.createElement("button");
+    btn.id = 'orderbtn'
+    btn.innerHTML = "Place Order";
+    btn.onclick=placeOrder;
+    document.body.appendChild(btn);  
+}
+
+placeOrder = function(){
+    var i;
+    var menu = new Menu;
+    var order = new Order;
+    var checkboxes = document.getElementsByClassName("checkbox");
+
+    for(i=0; i<checkboxes.length; i++){
+        if(checkboxes[i].checked){
+            order.add(menu.items[i]);   
+        }   
+    }
+
+    console.log(order.items);
+ 
 }
  
