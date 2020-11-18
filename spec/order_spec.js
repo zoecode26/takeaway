@@ -19,5 +19,18 @@ describe('Order', function() {
         expect(order.items[1].name).toEqual("Carbonara");
         expect(order.items[1].price).toEqual(7);
     });
+
+    it('calculates total price of items that have been added by user', function(){
+        menu = new Menu;
+        order = new Order;
+  
+        order.add(menu.items[0]);
+        order.add(menu.items[1]);
+  
+        order.calculateTotal();
+  
+        expect(order.total).toEqual(12);
+    });
+ 
  
 }); 
