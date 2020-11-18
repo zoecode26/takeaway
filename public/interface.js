@@ -4,15 +4,17 @@ function display(){
         var para = $("<p></p>").text(`${menu.items[i].name}: ${menu.items[i].price.toFixed(2)}`); 
         $("body").append(para);
 
-        $("body").append('<input type="checkbox" class="checkbox" />');                   
+        $("body").append('<input type="checkbox" class="checkbox" />');  
     }
+
+    $("body").append('<input type="button" id="orderbtn" onclick="placeOrder()" value="Place Order" />');
 }
 
 placeOrder = function(){
     var i;
     var menu = new Menu;
     var order = new Order;
-    var checkboxes = document.getElementsByClassName("checkbox");
+    var checkboxes = $(".checkbox");
 
     for(i=0; i<checkboxes.length; i++){
         if(checkboxes[i].checked){
