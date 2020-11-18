@@ -11,8 +11,8 @@ class Takeaway < Sinatra::Base
   end
 
   get '/confirmation' do
-    # time = Time.new
-    # hours_time = "#{(time.hour)+1}:#{time.min}"
+    time = Time.new
+    hours_time = "#{(time.hour)+1}:#{time.min}"
 
     # message = Message.new(hours_time)
     # message.send_message
