@@ -47,10 +47,16 @@ placeOrder = function(){
     var total = document.createElement("p");
     total.innerText = `Total: ${order.total.toFixed(2)}`;
     orderdiv.appendChild(total);
+
+    var form = document.createElement("form");
+    form.setAttribute("action", "/confirmation")
   
     var confirm = document.createElement("button");
     confirm.innerHTML = "Confirm";
-    orderdiv.appendChild(confirm);
+    confirm.setAttribute("type", "submit");
+    form.appendChild(confirm);
+
+    orderdiv.appendChild(form);
   
     var cancel = document.createElement("button");
     cancel.innerHTML = "Cancel";
@@ -61,8 +67,8 @@ placeOrder = function(){
  
 }
   
- cancelOrder = function(){
-    location.reload();
- }
+cancelOrder = function(){
+    location.reload()
+}
  
  
