@@ -30,7 +30,44 @@ placeOrder = function(){
         }   
     }
 
-    console.log(order.items);
+    order.calculateTotal();
+    var orderdiv = document.createElement("div");
+    orderdiv.id = 'orderdiv';
+  
+    var heading = document.createElement("h2"); 
+    heading.innerText = "Your order:";
+    orderdiv.appendChild(heading);
+  
+    for (i=0; i<order.items.length; i++){
+        var para = document.createElement("p"); 
+        para.innerText = `${order.items[i].name}: ${order.items[i].price.toFixed(2)}`;
+        orderdiv.appendChild(para);
+    }
+  
+    var total = document.createElement("p");
+    total.innerText = `Total: ${order.total.toFixed(2)}`;
+    orderdiv.appendChild(total);
+  
+    var confirm = document.createElement("button");
+    confirm.innerHTML = "Confirm";
+    confirm.onclick=confirmOrder;
+    orderdiv.appendChild(confirm);
+  
+    var cancel = document.createElement("button");
+    cancel.innerHTML = "Cancel";
+    cancel.onclick=cancelOrder;
+    orderdiv.appendChild(cancel);
+  
+    document.body.appendChild(orderdiv);
  
 }
+
+confirmOrder = function(){
+    console.log("Confirm")
+ }
+  
+ cancelOrder = function(){
+    location.reload()
+ }
+ 
  
