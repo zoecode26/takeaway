@@ -15,47 +15,55 @@ placeOrder = function(){
     var menu = new Menu;
     var order = new Order;
     var checkboxes = $(".checkbox");
+    var checked = 0;
 
     for(i=0; i<checkboxes.length; i++){
         if(checkboxes[i].checked){
-            order.add(menu.items[i]);   
+            checked++;   
         }   
     }
 
-    order.calculateTotal();
-    var orderdiv = document.createElement("div");
-    orderdiv.id = 'orderdiv';
-  
-    var heading = document.createElement("h2"); 
-    heading.innerText = "Your order:";
-    orderdiv.appendChild(heading);
-  
-    for (i=0; i<order.items.length; i++){
-        var para = document.createElement("p"); 
-        para.innerText = `${order.items[i].name}: ${order.items[i].price.toFixed(2)}`;
-        orderdiv.appendChild(para);
+    if (checked > 0){
+
+        $("#orderbtn").attr("disabled", true);
+        $(".checkbox").attr("disabled", true);
+
+        for(i=0; i<checkboxes.length; i++){
+            if(checkboxes[i].checked){
+                order.add(menu.items[i]);   
+            }   
+        }
+
+        order.calculateTotal();
+
+        $('body').append('<div id="orderdiv"/>');
+    
+        var heading = $("<h2></h2>").text("Your Order:"); 
+        $("#orderdiv").append(heading);
+    
+        for (i=0; i<order.items.length; i++){
+            var para = $("<p></p>").text(`${order.items[i].name}: ${order.items[i].price.toFixed(2)}`); 
+            $("#orderdiv").append(para);
+        }
+
+        var total = $("<p></p>").text(`Total: ${order.total.toFixed(2)}`); 
+        $("#orderdiv").append(total);
+
+        var form = document.createElement("form");
+        form.setAttribute("action", "/confirmation")
+    
+        var confirm = document.createElement("button");
+        confirm.innerHTML = "Confirm";
+        confirm.setAttribute("type", "submit");
+        form.appendChild(confirm);
+
+        $("#orderdiv").append(form);
+
+        $("#orderdiv").append('<input type="button" onclick="cancelOrder()" value="Cancel" />');
+    
+        $("#body").append($("#orderdiv"));
+
     }
-  
-    var total = document.createElement("p");
-    total.innerText = `Total: ${order.total.toFixed(2)}`;
-    orderdiv.appendChild(total);
-
-    var form = document.createElement("form");
-    form.setAttribute("action", "/confirmation")
-  
-    var confirm = document.createElement("button");
-    confirm.innerHTML = "Confirm";
-    confirm.setAttribute("type", "submit");
-    form.appendChild(confirm);
-
-    orderdiv.appendChild(form);
-  
-    var cancel = document.createElement("button");
-    cancel.innerHTML = "Cancel";
-    cancel.onclick=cancelOrder;
-    orderdiv.appendChild(cancel);
-  
-    document.body.appendChild(orderdiv);
  
 }
   
