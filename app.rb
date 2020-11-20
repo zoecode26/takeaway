@@ -5,6 +5,7 @@ require_relative 'send_sms.rb'
 
 class Takeaway < Sinatra::Base
   enable :sessions, :method_override
+  set :public_folder, 'public'
 
   get '/' do
     erb :index
