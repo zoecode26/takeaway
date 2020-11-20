@@ -15,8 +15,8 @@ class Takeaway < Sinatra::Base
     time = Time.new
     hours_time = "#{(time.hour)+1}:#{time.min}"
 
-    # message = Message.new(hours_time)
-    # message.send_message
+    message = Message.new(hours_time)
+    message.send_message
 
     erb :confirmation
   end
