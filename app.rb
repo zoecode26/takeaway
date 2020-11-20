@@ -15,6 +15,8 @@ class Takeaway < Sinatra::Base
     time = Time.new
     hours_time = "#{(time.hour)+1}:#{time.min}"
 
+    #Commented out to prevent accidental call to Twilio API
+    
     # message = Message.new(hours_time)
     # message.send_message
 
